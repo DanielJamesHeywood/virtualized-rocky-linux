@@ -3,8 +3,6 @@ import SwiftUI
 @main
 struct VirtualizedRockyLinuxApp: App {
     var body: some Scene {
-        WindowGroup {
-            ContentView()
-        }
+        Window("virtualized rocky linux", id: "virtualizedRockyLinuxApp", content: { ContentView() })
     }
 }
