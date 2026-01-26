@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  virtualized rocky linux
-//
-//  Created by Daniel James Heywood on 26/01/2026.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -17,8 +10,4 @@ struct ContentView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    ContentView()
 }
