@@ -40,6 +40,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     configuration.memorySize = (8 * 1024 * 1024 * 1024 as UInt64).clamped(
         to: VZVirtualMachineConfiguration.minimumAllowedMemorySize...VZVirtualMachineConfiguration.maximumAllowedMemorySize
     )
+    configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     do {
         try configuration.validate()
     } catch {
