@@ -19,6 +19,7 @@ struct VirtualizedRockyLinuxView: NSViewRepresentable {
 func makeVirtualMachine(delegate: VirtualMachineDelegate) -> VZVirtualMachine {
     let virtualMachine = VZVirtualMachine(configuration: makeVirtualMachineConfiguration())
     virtualMachine.delegate = delegate
+    virtualMachine.start(completionHandler: { result in })
     return virtualMachine
 }
 
