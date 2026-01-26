@@ -7,19 +7,19 @@ struct VirtualizedRockyLinuxView: NSViewRepresentable {
         let view = VZVirtualMachineView()
         view.automaticallyReconfiguresDisplay = true
         view.capturesSystemKeys = true
-        view.virtualMachine = _makeVirtualMachine()
+        view.virtualMachine = makeVirtualMachine()
         return view
     }
     
     func updateNSView(_ view: VZVirtualMachineView, context: Context) {}
 }
 
-func _makeVirtualMachine() -> VZVirtualMachine {
-    let virtualMachine = VZVirtualMachine(configuration: _makeVirtualMachineConfiguration())
+func makeVirtualMachine() -> VZVirtualMachine {
+    let virtualMachine = VZVirtualMachine(configuration: makeVirtualMachineConfiguration())
     return virtualMachine
 }
 
-func _makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
+func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     let configuration = VZVirtualMachineConfiguration()
     do {
         try configuration.validate()
