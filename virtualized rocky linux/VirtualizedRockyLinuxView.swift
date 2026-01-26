@@ -34,6 +34,9 @@ func makeVirtualMachine(delegate: VirtualMachineDelegate) -> VZVirtualMachine {
 
 func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     let configuration = VZVirtualMachineConfiguration()
+    configuration.cpuCount = 4.clamped(
+        to: VZVirtualMachineConfiguration.minimumAllowedCPUCount...VZVirtualMachineConfiguration.maximumAllowedCPUCount
+    )
     do {
         try configuration.validate()
     } catch {
