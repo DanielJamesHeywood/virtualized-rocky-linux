@@ -21,6 +21,11 @@ func _makeVirtualMachine() -> VZVirtualMachine {
 
 func _makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     let configuration = VZVirtualMachineConfiguration()
+    do {
+        try configuration.validate()
+    } catch {
+        fatalError("Failed to validate virtual machine configuration with error: \(error)")
+    }
     return configuration
 }
 
