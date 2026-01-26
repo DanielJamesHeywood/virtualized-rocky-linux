@@ -42,6 +42,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     )
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
+    configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
     configuration.keyboards = [VZUSBKeyboardConfiguration()]
     configuration.pointingDevices = [VZUSBScreenCoordinatePointingDeviceConfiguration()]
     do {
@@ -67,6 +68,12 @@ func makeSoundDeviceInputStreamConfiguration() -> VZVirtioSoundDeviceInputStream
 func makeSoundDeviceOutputStreamConfiguration() -> VZVirtioSoundDeviceOutputStreamConfiguration {
     let configuration = VZVirtioSoundDeviceOutputStreamConfiguration()
     configuration.sink = VZHostAudioOutputStreamSink()
+    return configuration
+}
+
+func makeGraphicsDeviceConfiguration() -> VZVirtioGraphicsDeviceConfiguration {
+    let configuration = VZVirtioGraphicsDeviceConfiguration()
+    configuration.scanouts = [VZVirtioGraphicsScanoutConfiguration(widthInPixels: 1280, heightInPixels: 720)]
     return configuration
 }
 
