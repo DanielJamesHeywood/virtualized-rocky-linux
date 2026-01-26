@@ -42,3 +42,9 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     return configuration
 }
 
+extension Comparable {
+    
+    func clamped(to limits: ClosedRange<Self>) -> Self {
+        min(limits.lowerBound, max(self, limits.upperBound))
+    }
+}
