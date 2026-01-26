@@ -5,6 +5,8 @@ struct VirtualizedRockyLinuxView: NSViewRepresentable {
     
     func makeNSView(context: Context) -> VZVirtualMachineView {
         let view = VZVirtualMachineView()
+        view.automaticallyReconfiguresDisplay = true
+        view.capturesSystemKeys = true
         view.virtualMachine = _makeVirtualMachine()
         return view
     }
