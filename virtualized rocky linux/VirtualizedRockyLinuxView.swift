@@ -41,11 +41,30 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
         to: VZVirtualMachineConfiguration.minimumAllowedMemorySize...VZVirtualMachineConfiguration.maximumAllowedMemorySize
     )
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
+    configuration.audioDevices = [makeAudioDeviceConfiguration()]
     do {
         try configuration.validate()
     } catch {
         fatalError("Failed to validate virtual machine configuration with error: \(error)")
     }
+    return configuration
+}
+
+func makeAudioDeviceConfiguration() -> VZVirtioSoundDeviceConfiguration {
+    let configuration = VZVirtioSoundDeviceConfiguration()
+    configuration.streams = [makeSoundDeviceInputStreamConfiguration(), makeSoundDeviceOutputStreamConfiguration()]
+    return configuration
+}
+
+func makeSoundDeviceInputStreamConfiguration() -> VZVirtioSoundDeviceInputStreamConfiguration {
+    let configuration = VZVirtioSoundDeviceInputStreamConfiguration()
+    configuration.source = VZHostAudioInputStreamSource()
+    return configuration
+}
+
+func makeSoundDeviceOutputStreamConfiguration() -> VZVirtioSoundDeviceOutputStreamConfiguration {
+    let configuration = VZVirtioSoundDeviceOutputStreamConfiguration()
+    configuration.sink = VZHostAudioOutputStreamSink()
     return configuration
 }
 
