@@ -3,13 +3,13 @@ import Virtualization
 
 struct VirtualizedRockyLinuxView: NSViewRepresentable {
     
-    let delegate = VirtualMachineDelegate()
+    let virtualMachineDelegate = VirtualMachineDelegate()
     
     func makeNSView(context: Context) -> VZVirtualMachineView {
         let view = VZVirtualMachineView()
         view.automaticallyReconfiguresDisplay = true
         view.capturesSystemKeys = true
-        view.virtualMachine = makeVirtualMachine(delegate: delegate)
+        view.virtualMachine = makeVirtualMachine(delegate: virtualMachineDelegate)
         return view
     }
     
