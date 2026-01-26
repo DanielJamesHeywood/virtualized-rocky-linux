@@ -1,4 +1,5 @@
 import SwiftUI
+import Virtualization
 
 @main
 struct VirtualizedRockyLinuxApp: App {
