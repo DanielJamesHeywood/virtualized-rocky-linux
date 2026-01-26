@@ -13,7 +13,7 @@ struct VirtualizedRockyLinuxView: NSViewRepresentable {
         return view
     }
     
-    func updateNSView(_ view: VZVirtualMachineView, context: Context) {}
+    func updateNSView(_ nsView: VZVirtualMachineView, context: Context) {}
 }
 
 func makeVirtualMachine(delegate: VirtualMachineDelegate) -> VZVirtualMachine {
