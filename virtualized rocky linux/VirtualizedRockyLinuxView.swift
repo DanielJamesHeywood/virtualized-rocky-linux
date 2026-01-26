@@ -37,6 +37,9 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     configuration.cpuCount = 4.clamped(
         to: VZVirtualMachineConfiguration.minimumAllowedCPUCount...VZVirtualMachineConfiguration.maximumAllowedCPUCount
     )
+    configuration.memorySize = (8 * 1024 * 1024 * 1024 as UInt64).clamped(
+        to: VZVirtualMachineConfiguration.minimumAllowedMemorySize...VZVirtualMachineConfiguration.maximumAllowedMemorySize
+    )
     do {
         try configuration.validate()
     } catch {
