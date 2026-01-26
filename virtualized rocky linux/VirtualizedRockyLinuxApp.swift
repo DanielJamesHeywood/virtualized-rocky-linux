@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct virtualized_rocky_linuxApp: App {
+struct VirtualizedRockyLinuxApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
