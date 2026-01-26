@@ -42,6 +42,8 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     )
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
+    configuration.keyboards = [VZUSBKeyboardConfiguration()]
+    configuration.pointingDevices = [VZUSBScreenCoordinatePointingDeviceConfiguration()]
     do {
         try configuration.validate()
     } catch {
