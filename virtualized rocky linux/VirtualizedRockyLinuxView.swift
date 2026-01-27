@@ -40,6 +40,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     configuration.memorySize = (8 * 1024 * 1024 * 1024 as UInt64).clamped(
         to: VZVirtualMachineConfiguration.minimumAllowedMemorySize...VZVirtualMachineConfiguration.maximumAllowedMemorySize
     )
+    configuration.consoleDevices = [makeSpiceAgentConsoleDeviceConfiguration()]
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
@@ -50,6 +51,19 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     } catch {
         fatalError("Failed to validate virtual machine configuration with error: \(error)")
     }
+    return configuration
+}
+
+func makeSpiceAgentConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfiguration {
+    let configuration = VZVirtioConsoleDeviceConfiguration()
+    configuration.ports[0] = makeSpiceAgentConsolePortConfiguration()
+    return configuration
+}
+
+func makeSpiceAgentConsolePortConfiguration() -> VZVirtioConsolePortConfiguration {
+    let configuration = VZVirtioConsolePortConfiguration()
+    configuration.name = VZSpiceAgentPortAttachment.spiceAgentPortName
+    configuration.attachment = VZSpiceAgentPortAttachment()
     return configuration
 }
 
