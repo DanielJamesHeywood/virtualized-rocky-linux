@@ -113,11 +113,7 @@ func makePlatformConfiguration(bundleURL: URL) -> VZGenericPlatformConfiguration
     if let machineIdentifier = try? VZGenericMachineIdentifier(dataRepresentation: Data(contentsOf: machineIdentifierURL)) {
         configuration.machineIdentifier = machineIdentifier
     } else {
-        do {
-            try configuration.machineIdentifier.dataRepresentation.write(to: machineIdentifierURL)
-        } catch {
-            fatalError("Failed to save machine identifier with error: \(error)")
-        }
+        try? configuration.machineIdentifier.dataRepresentation.write(to: machineIdentifierURL)
     }
     return configuration
 }
