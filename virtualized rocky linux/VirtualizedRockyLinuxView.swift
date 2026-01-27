@@ -41,6 +41,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
         to: VZVirtualMachineConfiguration.minimumAllowedMemorySize...VZVirtualMachineConfiguration.maximumAllowedMemorySize
     )
     configuration.consoleDevices = [makeSpiceAgentConsoleDeviceConfiguration()]
+    configuration.networkDevices = [makeNATNetworkDeviceConfiguration()]
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
@@ -57,6 +58,12 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
 func makeSpiceAgentConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfiguration {
     let configuration = VZVirtioConsoleDeviceConfiguration()
     configuration.ports[0] = makeSpiceAgentConsolePortConfiguration()
+    return configuration
+}
+
+func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
+    let configuration = VZVirtioNetworkDeviceConfiguration()
+    configuration.attachment = VZNATNetworkDeviceAttachment()
     return configuration
 }
 
