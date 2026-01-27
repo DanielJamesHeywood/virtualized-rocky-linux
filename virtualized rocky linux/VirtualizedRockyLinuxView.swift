@@ -47,6 +47,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
     configuration.keyboards = [VZUSBKeyboardConfiguration()]
+    configuration.platform = makePlatformConfiguration()
     configuration.pointingDevices = [VZUSBScreenCoordinatePointingDeviceConfiguration()]
     do {
         try configuration.validate()
@@ -101,6 +102,11 @@ func makeSoundDeviceOutputStreamConfiguration() -> VZVirtioSoundDeviceOutputStre
 func makeGraphicsDeviceConfiguration() -> VZVirtioGraphicsDeviceConfiguration {
     let configuration = VZVirtioGraphicsDeviceConfiguration()
     configuration.scanouts = [VZVirtioGraphicsScanoutConfiguration(widthInPixels: 1280, heightInPixels: 720)]
+    return configuration
+}
+
+func makePlatformConfiguration() -> VZGenericPlatformConfiguration {
+    let configuration = VZGenericPlatformConfiguration()
     return configuration
 }
 
