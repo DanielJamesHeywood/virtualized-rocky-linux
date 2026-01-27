@@ -34,6 +34,7 @@ func makeVirtualMachine(delegate: VirtualMachineDelegate) -> VZVirtualMachine {
 
 func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     let configuration = VZVirtualMachineConfiguration()
+    configuration.bootLoader = makeBootLoader()
     configuration.cpuCount = 4.clamped(
         to: VZVirtualMachineConfiguration.minimumAllowedCPUCount...VZVirtualMachineConfiguration.maximumAllowedCPUCount
     )
@@ -53,6 +54,11 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
         fatalError("Failed to validate virtual machine configuration with error: \(error)")
     }
     return configuration
+}
+
+func makeBootLoader() -> VZEFIBootLoader {
+    let bootLoader = VZEFIBootLoader()
+    return bootLoader
 }
 
 func makeSpiceAgentConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfiguration {
