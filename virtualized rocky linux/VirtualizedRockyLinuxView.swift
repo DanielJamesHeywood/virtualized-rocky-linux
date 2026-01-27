@@ -111,7 +111,11 @@ func makePlatformConfiguration() -> VZGenericPlatformConfiguration {
     if let machineIdentifier = try? VZGenericMachineIdentifier(dataRepresentation: Data(contentsOf: machineIdentifierURL)) {
         configuration.machineIdentifier = machineIdentifier
     } else {
-        try? configuration.machineIdentifier.dataRepresentation.write(to: machineIdentifierURL)
+        do {
+            try configuration.machineIdentifier.dataRepresentation.write(to: machineIdentifierURL)
+        } catch {
+            fatalError("Failed to save machine identifier with error: \(error)")
+        }
     }
     return configuration
 }
