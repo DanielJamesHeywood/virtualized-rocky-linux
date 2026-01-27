@@ -107,6 +107,21 @@ func makeGraphicsDeviceConfiguration() -> VZVirtioGraphicsDeviceConfiguration {
 
 func makePlatformConfiguration() -> VZGenericPlatformConfiguration {
     let configuration = VZGenericPlatformConfiguration()
+    let machineIdentifierURL = FileManager.default.homeDirectoryForCurrentUser.appending(
+        components: "virtualized rocky linux.bundle", "machine identifier"
+    )
+    if let machineIdentifierDataRepresentation = try? Data(contentsOf: machineIdentifierURL) {
+        guard let machineIdentifier = VZGenericMachineIdentifier(dataRepresentation: machineIdentifierDataRepresentation) else {
+            fatalError("Failed to load machine identifier")
+        }
+        configuration.machineIdentifier = machineIdentifier
+    } else {
+        do {
+            try configuration.machineIdentifier.dataRepresentation.write(to: machineIdentifierURL)
+        } catch {
+            fatalError("Failed to save machine identifier with error: \(error)")
+        }
+    }
     return configuration
 }
 
