@@ -47,7 +47,9 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
     configuration.keyboards = [VZUSBKeyboardConfiguration()]
-    configuration.platform = makePlatformConfiguration()
+    configuration.platform = makePlatformConfiguration(
+        bundleURL: FileManager.default.homeDirectoryForCurrentUser.appending(component: "virtualized rocky linux.bundle")
+    )
     configuration.pointingDevices = [VZUSBScreenCoordinatePointingDeviceConfiguration()]
     do {
         try configuration.validate()
@@ -105,11 +107,9 @@ func makeGraphicsDeviceConfiguration() -> VZVirtioGraphicsDeviceConfiguration {
     return configuration
 }
 
-func makePlatformConfiguration() -> VZGenericPlatformConfiguration {
+func makePlatformConfiguration(bundleURL: URL) -> VZGenericPlatformConfiguration {
     let configuration = VZGenericPlatformConfiguration()
-    let machineIdentifierURL = FileManager.default.homeDirectoryForCurrentUser.appending(
-        components: "virtualized rocky linux.bundle", "machine identifier"
-    )
+    let machineIdentifierURL = bundleURL.appending(component: "machine identifier")
     if let machineIdentifierDataRepresentation = try? Data(contentsOf: machineIdentifierURL) {
         guard let machineIdentifier = VZGenericMachineIdentifier(dataRepresentation: machineIdentifierDataRepresentation) else {
             fatalError("Failed to load machine identifier")
