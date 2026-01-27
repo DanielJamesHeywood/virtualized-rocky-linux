@@ -110,10 +110,7 @@ func makeGraphicsDeviceConfiguration() -> VZVirtioGraphicsDeviceConfiguration {
 func makePlatformConfiguration(bundleURL: URL) -> VZGenericPlatformConfiguration {
     let configuration = VZGenericPlatformConfiguration()
     let machineIdentifierURL = bundleURL.appending(component: "machine identifier")
-    if let machineIdentifierDataRepresentation = try? Data(contentsOf: machineIdentifierURL) {
-        guard let machineIdentifier = VZGenericMachineIdentifier(dataRepresentation: machineIdentifierDataRepresentation) else {
-            fatalError("Failed to load machine identifier")
-        }
+    if let machineIdentifier = try? VZGenericMachineIdentifier(dataRepresentation: Data(contentsOf: machineIdentifierURL)) {
         configuration.machineIdentifier = machineIdentifier
     } else {
         do {
