@@ -43,6 +43,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     )
     configuration.consoleDevices = [makeSpiceAgentConsoleDeviceConfiguration()]
     configuration.networkDevices = [makeNATNetworkDeviceConfiguration()]
+    configuration.storageDevices = [makeBlockDeviceConfiguration()]
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
@@ -90,6 +91,31 @@ func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
     let configuration = VZVirtioNetworkDeviceConfiguration()
     configuration.attachment = VZNATNetworkDeviceAttachment()
     return configuration
+}
+
+func makeBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
+    let diskImageURL = URL.applicationSupportDirectory.appending(component: "disk.img")
+    let diskImagePath = diskImageURL.path()
+    if !FileManager.default.fileExists(atPath: diskImagePath) {
+        guard FileManager.default.createFile(atPath: diskImagePath, contents: nil) else {
+            fatalError("Failed to create disk image")
+        }
+        guard let diskImageHandle = FileHandle(forWritingAtPath: diskImagePath) else {
+            fatalError("Failed to create disk image handle")
+        }
+        do {
+            try diskImageHandle.truncate(atOffset: 256 * 1024 * 1024 * 1024)
+        } catch {
+            fatalError("Failed to truncate disk image with error: \(error)")
+        }
+    }
+    do {
+        return try VZVirtioBlockDeviceConfiguration(
+            attachment: VZDiskImageStorageDeviceAttachment(url: diskImageURL, readOnly: false)
+        )
+    } catch {
+        fatalError("Failed to create disk image attachment with error: \(error)")
+    }
 }
 
 func makeAudioDeviceConfiguration() -> VZVirtioSoundDeviceConfiguration {
