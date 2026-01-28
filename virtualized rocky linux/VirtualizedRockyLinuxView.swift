@@ -160,6 +160,6 @@ func makePlatformConfiguration() -> VZGenericPlatformConfiguration {
 extension Comparable {
     
     func clamped(to limits: ClosedRange<Self>) -> Self {
-        min(limits.lowerBound, max(self, limits.upperBound))
+        min(max(limits.lowerBound, self), limits.upperBound)
     }
 }
