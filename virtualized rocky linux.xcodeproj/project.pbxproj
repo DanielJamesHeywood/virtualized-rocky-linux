@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		650BDCEE2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso in Resources */ = {isa = PBXBuildFile; fileRef = 650BDCED2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso */; };
+		657560312F2A54A700EC0F61 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 657560302F2A54A700EC0F61 /* README.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		650BDCCF2F27E1C2002271F6 /* Virtualized Rocky Linux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtualized Rocky Linux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		650BDCED2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rocky-10.1-aarch64-dvd1.iso"; path = "/Users/daniel/Documents/Rocky-10.1-aarch64-dvd1.iso"; sourceTree = "<absolute>"; };
+		657560302F2A54A700EC0F61 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -37,6 +39,7 @@
 		650BDCC62F27E1C2002271F6 = {
 			isa = PBXGroup;
 			children = (
+				657560302F2A54A700EC0F61 /* README.md */,
 				650BDCD12F27E1C2002271F6 /* virtualized rocky linux */,
 				650BDCD02F27E1C2002271F6 /* Products */,
 				650BDCED2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso */,
@@ -115,6 +118,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				657560312F2A54A700EC0F61 /* README.md in Resources */,
 				650BDCEE2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
