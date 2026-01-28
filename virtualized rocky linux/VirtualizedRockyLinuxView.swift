@@ -43,7 +43,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     )
     configuration.consoleDevices = [makeSpiceAgentConsoleDeviceConfiguration()]
     configuration.networkDevices = [makeNATNetworkDeviceConfiguration()]
-    configuration.storageDevices = [makeDiskImageBlockDeviceConfiguration()]
+    configuration.storageDevices = [makeUSBMassStorageDeviceConfiguration(), makeBlockDeviceConfiguration()]
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
@@ -90,6 +90,19 @@ func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
     let configuration = VZVirtioNetworkDeviceConfiguration()
     configuration.attachment = VZNATNetworkDeviceAttachment()
     return configuration
+}
+
+func makeUSBMassStorageDeviceConfiguration() -> VZUSBMassStorageDeviceConfiguration {
+    guard let diskImageURL = Bundle.main.url(forResource: "Rocky-10.1-aarch64-dvd1", withExtension: "iso") else {
+        fatalError("Failed to load disk image")
+    }
+    do {
+        return try VZUSBMassStorageDeviceConfiguration(
+            attachment: VZDiskImageStorageDeviceAttachment(url: diskImageURL, readOnly: true)
+        )
+    } catch {
+        fatalError("Failed to create disk image attachment for USB mass storage device with error: \(error)")
+    }
 }
 
 func makeBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
