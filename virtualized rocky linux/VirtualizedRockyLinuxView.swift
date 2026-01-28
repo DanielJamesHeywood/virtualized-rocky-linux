@@ -60,7 +60,8 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
 func makeBootLoader() -> VZEFIBootLoader {
     let bootLoader = VZEFIBootLoader()
     let variableStoreURL = URL.applicationSupportDirectory.appending(component: "variable store")
-    if FileManager.default.fileExists(atPath: variableStoreURL.path()) {
+    let variableStorePath = variableStoreURL.path()
+    if FileManager.default.fileExists(atPath: variableStorePath) {
         bootLoader.variableStore = VZEFIVariableStore(url: variableStoreURL)
     } else {
         do {
