@@ -43,7 +43,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
     )
     configuration.consoleDevices = [makeSpiceAgentConsoleDeviceConfiguration()]
     configuration.networkDevices = [makeNATNetworkDeviceConfiguration()]
-    configuration.storageDevices = [makeBlockDeviceConfiguration()]
+    configuration.storageDevices = [makeDiskImageBlockDeviceConfiguration()]
     configuration.entropyDevices = [VZVirtioEntropyDeviceConfiguration()]
     configuration.audioDevices = [makeAudioDeviceConfiguration()]
     configuration.graphicsDevices = [makeGraphicsDeviceConfiguration()]
@@ -92,7 +92,7 @@ func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
     return configuration
 }
 
-func makeBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
+func makeDiskImageBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
     let diskImageURL = URL.applicationSupportDirectory.appending(component: "disk.img")
     if !FileManager.default.fileExists(atPath: diskImageURL.relativePath) {
         guard FileManager.default.createFile(atPath: diskImageURL.relativePath, contents: nil) else {
