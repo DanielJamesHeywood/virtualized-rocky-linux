@@ -11,7 +11,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		650BDCCF2F27E1C2002271F6 /* virtualized rocky linux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "virtualized rocky linux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		650BDCCF2F27E1C2002271F6 /* Virtualized Rocky Linux.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Virtualized Rocky Linux.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		650BDCED2F2A3462002271F6 /* Rocky-10.1-aarch64-dvd1.iso */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rocky-10.1-aarch64-dvd1.iso"; path = "/Users/daniel/Documents/Rocky-10.1-aarch64-dvd1.iso"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -46,7 +46,7 @@
 		650BDCD02F27E1C2002271F6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				650BDCCF2F27E1C2002271F6 /* virtualized rocky linux.app */,
+				650BDCCF2F27E1C2002271F6 /* Virtualized Rocky Linux.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -54,9 +54,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		650BDCCE2F27E1C2002271F6 /* virtualized rocky linux */ = {
+		650BDCCE2F27E1C2002271F6 /* Virtualized Rocky Linux */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 650BDCDA2F27E1C2002271F6 /* Build configuration list for PBXNativeTarget "virtualized rocky linux" */;
+			buildConfigurationList = 650BDCDA2F27E1C2002271F6 /* Build configuration list for PBXNativeTarget "Virtualized Rocky Linux" */;
 			buildPhases = (
 				650BDCCB2F27E1C2002271F6 /* Sources */,
 				650BDCCC2F27E1C2002271F6 /* Frameworks */,
@@ -69,11 +69,11 @@
 			fileSystemSynchronizedGroups = (
 				650BDCD12F27E1C2002271F6 /* virtualized rocky linux */,
 			);
-			name = "virtualized rocky linux";
+			name = "Virtualized Rocky Linux";
 			packageProductDependencies = (
 			);
 			productName = "virtualized rocky linux";
-			productReference = 650BDCCF2F27E1C2002271F6 /* virtualized rocky linux.app */;
+			productReference = 650BDCCF2F27E1C2002271F6 /* Virtualized Rocky Linux.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -105,7 +105,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				650BDCCE2F27E1C2002271F6 /* virtualized rocky linux */,
+				650BDCCE2F27E1C2002271F6 /* Virtualized Rocky Linux */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +267,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Virtualized Rocky Linux";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +301,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Virtualized Rocky Linux";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -330,7 +332,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		650BDCDA2F27E1C2002271F6 /* Build configuration list for PBXNativeTarget "virtualized rocky linux" */ = {
+		650BDCDA2F27E1C2002271F6 /* Build configuration list for PBXNativeTarget "Virtualized Rocky Linux" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				650BDCDB2F27E1C2002271F6 /* Debug */,
