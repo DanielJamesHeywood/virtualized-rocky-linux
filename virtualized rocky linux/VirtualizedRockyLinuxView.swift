@@ -92,7 +92,7 @@ func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
     return configuration
 }
 
-func makeDiskImageBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
+func makeBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
     let diskImageURL = URL.applicationSupportDirectory.appending(component: "disk.img")
     if !FileManager.default.fileExists(atPath: diskImageURL.relativePath) {
         guard FileManager.default.createFile(atPath: diskImageURL.relativePath, contents: nil) else {
@@ -112,7 +112,7 @@ func makeDiskImageBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration
             attachment: VZDiskImageStorageDeviceAttachment(url: diskImageURL, readOnly: false)
         )
     } catch {
-        fatalError("Failed to create disk image attachment with error: \(error)")
+        fatalError("Failed to create disk image attachment for block device with error: \(error)")
     }
 }
 
