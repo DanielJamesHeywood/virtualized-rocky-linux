@@ -61,8 +61,7 @@ func makeVirtualMachineConfiguration() -> VZVirtualMachineConfiguration {
 func makeBootLoader() -> VZEFIBootLoader {
     let bootLoader = VZEFIBootLoader()
     let variableStoreURL = URL.applicationSupportDirectory.appending(component: "variable store")
-    let variableStorePath = variableStoreURL.path()
-    if FileManager.default.fileExists(atPath: variableStorePath) {
+    if FileManager.default.fileExists(atPath: variableStoreURL.relativePath) {
         bootLoader.variableStore = VZEFIVariableStore(url: variableStoreURL)
     } else {
         do {
@@ -95,12 +94,11 @@ func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
 
 func makeBlockDeviceConfiguration() -> VZVirtioBlockDeviceConfiguration {
     let diskImageURL = URL.applicationSupportDirectory.appending(component: "disk.img")
-    let diskImagePath = diskImageURL.path()
-    if !FileManager.default.fileExists(atPath: diskImagePath) {
-        guard FileManager.default.createFile(atPath: diskImagePath, contents: nil) else {
+    if !FileManager.default.fileExists(atPath: diskImageURL.relativePath) {
+        guard FileManager.default.createFile(atPath: diskImageURL.relativePath, contents: nil) else {
             fatalError("Failed to create disk image")
         }
-        guard let diskImageHandle = FileHandle(forWritingAtPath: diskImagePath) else {
+        guard let diskImageHandle = FileHandle(forWritingAtPath: diskImageURL.relativePath) else {
             fatalError("Failed to create disk image handle")
         }
         do {
