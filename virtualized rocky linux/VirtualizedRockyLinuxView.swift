@@ -78,16 +78,16 @@ func makeSpiceAgentConsoleDeviceConfiguration() -> VZVirtioConsoleDeviceConfigur
     return configuration
 }
 
-func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
-    let configuration = VZVirtioNetworkDeviceConfiguration()
-    configuration.attachment = VZNATNetworkDeviceAttachment()
-    return configuration
-}
-
 func makeSpiceAgentConsolePortConfiguration() -> VZVirtioConsolePortConfiguration {
     let configuration = VZVirtioConsolePortConfiguration()
     configuration.name = VZSpiceAgentPortAttachment.spiceAgentPortName
     configuration.attachment = VZSpiceAgentPortAttachment()
+    return configuration
+}
+
+func makeNATNetworkDeviceConfiguration() -> VZVirtioNetworkDeviceConfiguration {
+    let configuration = VZVirtioNetworkDeviceConfiguration()
+    configuration.attachment = VZNATNetworkDeviceAttachment()
     return configuration
 }
 
